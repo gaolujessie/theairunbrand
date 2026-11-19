@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+const repos = [
+  { name: 'shopify-stock-report', what: 'A Python script that turns Shopify stock and sales into the weekly report a founder actually reads.', status: 'in progress', lang: 'Python' },
+  { name: 'caption-pipeline', what: 'A Claude skill that drafts Instagram captions in the brand voice from a product and a photo.', status: 'planned', lang: 'Claude skill' },
+  { name: 'cs50p', what: 'Harvard’s CS50 Introduction to Programming with Python — every problem set, with a README in plain English.', status: 'weekly', lang: 'Python' },
+];
+---
+<Base title="Building" description="Learning Python and building the small tools a consumer brand needs — in public, on GitHub, with READMEs a founder can read.">
+  <section class="intro">
+    <div class="wrap grid-12">
+      <div class="span-8 stack">
+        <p class="eyebrow">Building</p>
+        <h1 class="h-display">From founder to builder — in public.</h1>
+        <p class="lede">I have an engineering background and a founder’s priorities. I’m learning Python properly (Harvard’s CS50P), then building agents that do one real job in the business end to end. Everything goes on GitHub with a README a non-engineer can follow. It will look unfinished. That’s the point.</p>
+        <a href="https://github.com/gaolujessie" class="btn btn--ink" target="_blank" rel="me noopener">GitHub · gaolujessie</a>
+      </div>
+    </div>
+  </section>
+  <section class="wrap repos">
+    <h2 class="h-section reveal">What’s on the bench</h2>
+    <ul class="reveal">
+      {repos.map(r => (
+        <li class="repo">
+          <div><p class="repo__name">{r.name}</p><p class="repo__what">{r.what}</p></div>
+          <p class="repo__meta"><span>{r.lang}</span><span class="dot">·</span><span>{r.status}</span></p>
+        </li>
+      ))}
+    </ul>
+  </section>
+  <section class="wrap rules reveal">
+    <h2 class="h-section">Three rules for this page</h2>
+    <ol>
+      <li><strong>Only tools I’d pay for.</strong> Every project starts as a job in my own brand that costs time or money today.</li>
+      <li><strong>Written for founders.</strong> Each README explains what the tool does and how to use it before it explains how it works.</li>
+      <li><strong>Failures stay up.</strong> If an approach didn’t work, the repo says so and why. That’s the useful part.</li>
+    </ol>
+  </section>
+</Base>
+<style>
+  .intro { padding-block: clamp(56px, 7vw, 96px) clamp(40px, 5vw, 64px); }
+  .intro .stack { gap: 24px; align-items: flex-start; }
+  .repos { padding-bottom: clamp(48px, 6vw, 72px); display: flex; flex-direction: column; gap: 28px; }
+  .repo { display: flex; justify-content: space-between; gap: 24px; padding: 24px 28px; background: var(--white); border-radius: 8px; margin-bottom: 12px; }
+  .repo__name { font-weight: 700; font-size: 17px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .repo__what { color: var(--body); font-size: 15px; margin-top: 6px; max-width: 620px; }
+  .repo__meta { font-size: 14px; color: var(--muted); white-space: nowrap; }
+  .dot { margin: 0 8px; }
+  .rules { padding-bottom: clamp(72px, 8vw, 112px); display: flex; flex-direction: column; gap: 24px; }
+  .rules ol { padding-left: 1.3em; list-style: decimal; max-width: 720px; display: flex; flex-direction: column; gap: 12px; font-size: 17px; line-height: 1.6; color: var(--body); }
+  .rules strong { color: var(--ink); }
+  @media (max-width: 700px) { .repo { flex-direction: column; gap: 10px; } }
+</style>

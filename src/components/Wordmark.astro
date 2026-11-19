@@ -1,0 +1,16 @@
+---
+import Mark from './Mark.astro';
+interface Props { size?: string; href?: string }
+const { size = '30px', href = '/' } = Astro.props;
+---
+<a class="wordmark" href={href} aria-label="Jessie Gao — home" style={`font-size:${size}`}>
+  Jess<span class="wordmark__i">ı<Mark class="wordmark__mark" size="0.34em" color="var(--hero)" /></span>e Gao
+</a>
+<style>
+  .wordmark { font-family: var(--serif); color: var(--ink); line-height: 1; letter-spacing: .1px; display: inline-block; white-space: nowrap; }
+  .wordmark:hover { color: var(--ink); }
+  .wordmark__i { position: relative; display: inline-block; }
+  .wordmark__i :global(.wordmark__mark) { position: absolute; left: 50%; top: -0.06em; transform: translateX(-50%); animation: pulse .5s ease-out .2s 1 both; }
+  @keyframes pulse { 0% { transform: translateX(-50%) scale(.85); opacity: .4 } 100% { transform: translateX(-50%) scale(1); opacity: 1 } }
+  @media (prefers-reduced-motion: reduce) { .wordmark__i :global(.wordmark__mark) { animation: none } }
+</style>

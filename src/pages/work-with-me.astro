@@ -1,0 +1,119 @@
+---
+import Base from '../layouts/Base.astro';
+const AUDIT_PRICE = '[AUDIT PRICE]';
+const MONTHLY_PRICE = '[MONTHLY PRICE]';
+---
+<Base title="Work with me" description="1:1 advisory for consumer-brand founders: how to start and grow the brand, and how to run it with AI agents in place of the first hires. Starts with a 90-minute Brand AI Audit.">
+  <section class="intro">
+    <div class="wrap grid-12">
+      <div class="span-8 stack">
+        <p class="eyebrow">Work with me · From early 2027</p>
+        <h1 class="h-display">Build a real brand without hiring a team first.</h1>
+        <p class="lede">I work 1:1 with a small number of consumer-brand founders on two things at once: how to start and grow the brand — product, production, wholesale, online, markets — and how to run it with AI agents in place of the first five hires. Everything I teach is something I do myself, every week, in my own business.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap fit reveal">
+    <div class="grid-2">
+      <div class="card card--flat">
+        <h2 class="h-card">This is for you if</h2>
+        <ul class="list">
+          <li>You run a consumer brand (fashion, kids, home, beauty, food) and you’re the one doing most of it</li>
+          <li>You’re feeling the squeeze of agency and content costs and don’t want a payroll yet</li>
+          <li>You’ve tried AI tools ad hoc and the results didn’t look like your brand</li>
+          <li>You want working systems you own, not a bag of prompts</li>
+        </ul>
+      </div>
+      <div class="card card--outline">
+        <h2 class="h-card">Probably not for you if</h2>
+        <ul class="list">
+          <li>You want someone to do the work for you — I build it with you so it keeps working when I leave</li>
+          <li>You’re looking for growth hacks or paid-ads management</li>
+          <li>You don’t yet have a product or a brand you believe in</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <p class="eyebrow reveal">How it works</p>
+      <h2 class="h-section how__h reveal">Start with an audit. Continue only if it earns it.</h2>
+      <div class="grid-2 how reveal">
+        <article class="step">
+          <p class="eyebrow">Step 1</p>
+          <h3 class="step__h">The Brand AI Audit</h3>
+          <p class="step__p">A 90-minute working session on your brand, followed by a written plan: where AI should sit in each of your functions, in what order, with what setup — and what to leave human.</p>
+          <ul class="list list--light">
+            <li>90 minutes, video call, you and me</li>
+            <li>Written plan within a week</li>
+            <li>Credited against advisory if we continue</li>
+          </ul>
+          <p class="price">{AUDIT_PRICE}</p>
+          <a href="#apply" class="btn btn--primary">Book an audit</a>
+        </article>
+        <article class="step">
+          <p class="eyebrow">Step 2</p>
+          <h3 class="step__h">1:1 Advisory</h3>
+          <p class="step__p">Monthly, minimum three months. We build your AI team function by function — content, photography, customer service, operations, data — alongside the brand decisions in front of you that quarter.</p>
+          <ul class="list list--light">
+            <li>Two working sessions a month</li>
+            <li>Async access between sessions</li>
+            <li>Templates, skills and SOPs you keep</li>
+          </ul>
+          <p class="price">{MONTHLY_PRICE} <span class="price__unit">/ month</span></p>
+          <a href="#apply" class="btn btn--light">Apply</a>
+        </article>
+      </div>
+      <p class="how__note reveal">A six-week group programme and a self-serve kit of templates and skills follow later in 2027, built from what the first founders ask for. <a href="/#subscribe">Join the notes</a> to hear first.</p>
+    </div>
+  </section>
+
+  <section id="apply" class="wrap section">
+    <div class="grid-12 apply reveal">
+      <div class="span-5 stack">
+        <h2 class="h-section">Tell me about your brand</h2>
+        <p class="apply__p">Four questions. I read every one myself and reply within a few days. The first founders in early 2027 will be a small group, chosen for fit rather than first-come.</p>
+      </div>
+      <form class="span-7 form" action="#" method="post" data-apply>
+        <div class="grid-2 form__row">
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" required autocomplete="name" /></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" /></div>
+        </div>
+        <div class="field"><label for="brand">Your brand and website</label><input id="brand" name="brand" type="text" /></div>
+        <div class="field"><label for="stage">Where are you?</label>
+          <select id="stage" name="stage"><option>Pre-launch</option><option>Launched, under £250k</option><option>£250k – £1m</option><option>£1m – £5m</option><option>Over £5m</option></select>
+        </div>
+        <div class="field"><label for="headache">What’s the biggest headache right now?</label><textarea id="headache" name="headache" rows="4"></textarea></div>
+        <button type="submit" class="btn btn--primary">Send</button>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { padding-block: clamp(56px, 7vw, 96px) clamp(40px, 5vw, 72px); }
+  .intro .stack { gap: 24px; }
+  .fit { padding-bottom: clamp(56px, 7vw, 80px); }
+  .card--flat { padding: 36px; }
+  .card--flat:hover, .card--outline:hover { transform: none; box-shadow: none; }
+  .card--outline { background: transparent; border: 1px solid var(--rule); padding: 36px; }
+  .list { padding-left: 20px; list-style: disc; font-size: 16px; line-height: 1.7; color: var(--body); display: flex; flex-direction: column; gap: 4px; }
+  .list--light { color: var(--support-light); font-size: 15px; }
+  .how__h { max-width: 760px; margin: 16px 0 48px; }
+  .how { gap: 32px; }
+  .step { padding: clamp(28px, 3vw, 40px); border: 1px solid #4A4A4A; border-radius: 8px; display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+  .step__h { font-size: 36px; }
+  .step__p { font-size: 16px; line-height: 1.6; color: var(--support-light); }
+  .price { font-family: var(--serif); font-size: 32px; margin-top: 6px; }
+  .price__unit { font-family: var(--sans); font-size: 15px; color: #A9A9A4; }
+  .how__note { margin-top: 32px; font-size: 15px; color: #A9A9A4; max-width: 720px; }
+  .how__note a { color: var(--ground); text-decoration: underline; }
+  .apply { align-items: start; gap: 40px; }
+  .apply__p { font-size: 16px; line-height: 1.6; color: var(--body); }
+  .form { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+  .form__row { width: 100%; gap: 18px; }
+  .form .field { width: 100%; }
+  @media (max-width: 900px) { .how, .form__row { grid-template-columns: 1fr; } }
+</style>

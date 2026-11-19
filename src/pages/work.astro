@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+const studies = [
+  { t: 'Ten outfits, two shoots: AI photography against the real thing' },
+  { t: 'Building an AI team for a small brand' },
+  { t: 'A London brand, a China warehouse, customers in Tokyo' },
+];
+---
+<Base title="Work" description="Chapters, not a CV: an engineering education, a decade building a global consumer brand, and a second chapter running it with an AI team.">
+  <section class="intro">
+    <div class="wrap grid-12">
+      <div class="span-8 stack">
+        <p class="eyebrow">Work</p>
+        <h1 class="h-display">Chapters, not a CV.</h1>
+        <p class="lede">An engineering education, then a decade building a consumer brand from a sketchbook to department stores and customers worldwide. Now a second chapter: running that brand with AI, and helping other founders do the same.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter reveal">
+    <div class="wrap grid-12 chapter__in">
+      <div class="span-4 stack chapter__head">
+        <p class="chapter__n">Chapter one</p>
+        <h2 class="h-section">Founding and scaling a global children’s brand</h2>
+        <p class="chapter__meta"><a href="https://happyology.co.uk" target="_blank" rel="noopener">Happyology ↗</a> · founded 2016</p>
+      </div>
+      <div class="span-8 stack chapter__body">
+        <p class="chapter__p">Happyology makes hand-embroidered children’s clothing in organic and natural fabrics. I founded it, and I am still its creative director. It is sold through its own online shop, through department stores including Harrods and John Lewis, across ten e-commerce platforms, and through a separate business on China’s largest marketplaces. Production runs from our own warehouse in China.</p>
+        <div class="grid-2 chapter__cards">
+          <div class="card card--flat"><p class="eyebrow eyebrow--support">What I ran</p><p class="card__p">Design and range planning · sampling and production briefs · pricing · wholesale accounts · the Shopify site · marketing and content · international shipping and duties · finance</p></div>
+          <div class="card card--flat"><p class="eyebrow eyebrow--support">What it taught me</p><p class="card__p">A brand is a system, not a logo. Taste is the one thing you can’t outsource. And most of the headcount a brand thinks it needs is really a list of repeatable jobs.</p></div>
+        </div>
+        <div class="imgs" role="img" aria-label="Brand imagery — coming">
+          <div class="ph ph--portrait"></div><div class="ph ph--portrait"></div><div class="ph ph--portrait"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter chapter--white reveal">
+    <div class="wrap grid-12 chapter__in">
+      <div class="span-4 stack chapter__head">
+        <p class="chapter__n">Chapter two</p>
+        <h2 class="h-section">Running the brand with an AI team</h2>
+        <p class="chapter__meta">2025 – present</p>
+      </div>
+      <div class="span-8 stack chapter__body">
+        <p class="chapter__p">Over the last two years I have moved most of the brand’s core functions onto AI — mainly Claude — one at a time, keeping what works and writing down what doesn’t. The case studies are the honest record: the cost per look of AI photography against a real shoot, what it took to make a customer-service agent sound like us, and where customers noticed a difference.</p>
+        <ul class="studies">
+          {studies.map(s => <li><a href="/notes"><span>{s.t}</span><span class="studies__cta">Case study →</span></a></li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter chapter--last reveal">
+    <div class="wrap grid-12 chapter__in">
+      <div class="span-4 stack chapter__head">
+        <p class="chapter__n">Chapter three</p>
+        <h2 class="h-section">What comes next</h2>
+        <p class="chapter__meta">2027 →</p>
+      </div>
+      <div class="span-8 stack chapter__body">
+        <p class="chapter__p">Working with other consumer-brand founders, learning to build the tools myself, and keeping the door open to whatever the next company turns out to be. This chapter is written in public — in the notes, on GitHub, and in the work I do with founders.</p>
+        <div class="ctas">
+          <a href="/work-with-me" class="btn btn--primary">Work with me</a>
+          <a href="/building" class="btn btn--ghost">Follow the building</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { padding-block: clamp(56px, 7vw, 96px) clamp(40px, 5vw, 64px); }
+  .intro .stack { gap: 24px; }
+  .chapter { padding-block: clamp(48px, 5vw, 64px); border-top: 1px solid var(--rule); }
+  .chapter--white { background: var(--white); border-top: 0; }
+  .chapter--last { padding-bottom: clamp(72px, 8vw, 96px); }
+  .chapter__in { align-items: start; gap: 40px; }
+  .chapter__head { gap: 12px; }
+  .chapter__n { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--hero); }
+  .chapter__meta { font-size: 14px; color: var(--muted); }
+  .chapter__meta a { font-weight: 700; }
+  .chapter__body { gap: 28px; }
+  .chapter__p { font-size: 18px; line-height: 1.65; color: var(--body); }
+  .card--flat { padding: 24px; gap: 6px; }
+  .card--flat:hover { transform: none; box-shadow: none; }
+  .card__p { font-size: 15px; line-height: 1.6; color: var(--body); }
+  .chapter__cards { gap: 20px; }
+  .imgs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .studies { display: flex; flex-direction: column; }
+  .studies a { display: flex; justify-content: space-between; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--rule); color: var(--ink); font-family: var(--serif); font-size: clamp(20px, 1.8vw, 24px); }
+  .studies a:hover { color: var(--hero); }
+  .studies__cta { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--hero); white-space: nowrap; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+  @media (max-width: 900px) { .chapter__cards { grid-template-columns: 1fr; } .studies a { flex-direction: column; gap: 6px; } }
+</style>

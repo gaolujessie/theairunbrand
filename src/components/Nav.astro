@@ -1,0 +1,50 @@
+---
+import Wordmark from './Wordmark.astro';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const items = [
+  { href: '/#about', label: 'About' },
+  { href: '/work', label: 'Work' },
+  { href: '/building', label: 'Building' },
+  { href: '/notes', label: 'Notes' },
+];
+const active = (h: string) => h !== '/#about' && path.startsWith(h);
+---
+<header class="nav">
+  <div class="wrap nav__in">
+    <Wordmark />
+    <nav aria-label="Primary" class="nav__links" id="nav-links">
+      {items.map(i => <a href={i.href} class:list={[{ 'is-active': active(i.href) }]}>{i.label}</a>)}
+      <a href="/work-with-me" class="btn btn--ink nav__cta">Work with me</a>
+    </nav>
+    <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+    </button>
+  </div>
+</header>
+<style>
+  .nav { border-bottom: 1px solid var(--rule); background: var(--ground); position: relative; z-index: 10; }
+  .nav__in { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 24px; }
+  .nav__links { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; font-size: 15px; font-weight: 600; }
+  .nav__links a { color: var(--ink); }
+  .nav__links a:hover, .nav__links a.is-active { color: var(--hero); }
+  .nav__links a.nav__cta { color: var(--ground); min-height: 42px; padding: 0 18px; }
+  .nav__links a.nav__cta:hover { color: var(--ground); }
+  .nav__toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--rule); border-radius: 999px; background: var(--ground); color: var(--ink); align-items: center; justify-content: center; cursor: pointer; }
+  @media (max-width: 820px) {
+    .nav__in { padding-block: 16px; }
+    .nav__toggle { display: inline-flex; }
+    .nav__links { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 0; background: var(--ground); border-bottom: 1px solid var(--rule); padding: 8px var(--gutter) 20px; }
+    .nav__links.is-open { display: flex; }
+    .nav__links a { padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: 17px; }
+    .nav__cta { margin-top: 14px; border-bottom: 0 !important; justify-content: center; }
+  }
+</style>
+<script>
+  const t = document.querySelector('.nav__toggle') as HTMLButtonElement | null;
+  const l = document.getElementById('nav-links');
+  t?.addEventListener('click', () => {
+    const open = l?.classList.toggle('is-open');
+    t.setAttribute('aria-expanded', String(!!open));
+    t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>

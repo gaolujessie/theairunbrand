@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const notes = (await getCollection('notes', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+const upcoming = [
+  { tag: 'Photography', title: 'Ten outfits, two shoots: AI photography against the real thing', description: 'What it cost per look, where the AI fell short, and what I’d tell another brand owner before they try.' },
+  { tag: 'AI team', title: 'Building an AI team for a small brand — and why the caption workflow was the hard part', description: 'Customer service, marketing and e-commerce assistants: what a “skill” is in plain English and what it took to make one useful.' },
+  { tag: 'Operations', title: 'A London brand, a China warehouse, customers in Tokyo: the operating system', description: 'How the business actually runs across markets, and exactly where AI now sits in it.' },
+].slice(0, Math.max(0, 3 - notes.length));
+const functions = [
+  ['Design & range planning', 'Moodboards, naming, range logic, sampling briefs'],
+  ['Photography & video', 'AI on-model imagery next to real shoots'],
+  ['Marketing & content', 'Captions, email, SEO and AEO copy, campaigns'],
+  ['Customer service', 'Agents that answer in the brand’s voice, across time zones'],
+  ['Wholesale & operations', 'Department-store orders, barcodes, shipping and duties'],
+  ['Website & data', 'Shopify, stock buffers, sales by market, forecasting'],
+];
+---
+<Base title="Jessie Gao">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap grid-12">
+      <div class="span-7 stack hero__copy">
+        <p class="eyebrow">Founder · London</p>
+        <h1 class="h-display">One founder.<br>A global brand.<br><em class="accent">An AI team</em> instead of a payroll.</h1>
+        <p class="lede">I’m Jessie Gao. I built a children’s clothing brand from a sketchbook to department stores and customers worldwide — and I still run its design, marketing, production and website myself, with Claude in nearly every function. Here I show exactly how, and help other founders build the same way.</p>
+        <div class="hero__ctas">
+          <a href="#subscribe" class="btn btn--primary">Get the weekly notes</a>
+          <a href="/work-with-me" class="btn btn--ghost">Work with me</a>
+        </div>
+        <p class="cred">Founder of a consumer brand with <strong>£10m in annual sales</strong> — sold worldwide across 10 e-commerce platforms, stocked at Harrods and leading retailers</p>
+      </div>
+      <div class="span-5 hero__img">
+        <div class="ph ph--portrait" role="img" aria-label="Portrait of Jessie Gao"><span>Portrait — coming</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="wrap proof reveal" aria-label="What I do">
+    <div class="grid-3">
+      <article class="card">
+        <p class="eyebrow eyebrow--support">Brand builder</p>
+        <h2 class="h-card">A premium consumer brand, built from a sketchbook to department stores and customers worldwide</h2>
+        <p class="card__p">Design, sampling and production, wholesale, direct-to-consumer online and international platform businesses — leading every part of it, hands on.</p>
+        <a href="/work" class="link">Read the story →</a>
+      </article>
+      <article class="card">
+        <p class="eyebrow eyebrow--support">AI in practice</p>
+        <h2 class="h-card">Photography, customer service, marketing and ops — one person and a set of agents</h2>
+        <p class="card__p">Not prompts: working systems, documented honestly, including the parts that failed and what they cost.</p>
+        <a href="/notes" class="link">See the case studies →</a>
+      </article>
+      <article class="card">
+        <p class="eyebrow eyebrow--support">Building in public</p>
+        <h2 class="h-card">Learning Python and building the tools a small brand actually needs</h2>
+        <p class="card__p">Scripts, agents and templates, open on GitHub with plain-English notes. Engineering background, founder’s priorities.</p>
+        <a href="/building" class="link">Follow along →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ABOUT / FUNCTIONS -->
+  <section id="about" class="section section--dark">
+    <div class="wrap grid-12 about">
+      <div class="span-5 stack reveal">
+        <p class="eyebrow">What one founder covers</p>
+        <h2 class="h-section">The jobs a brand used to hire a whole team for.</h2>
+        <p class="about__p">I lead the design and production teams and work with retail partners in each market. The core of the brand — the parts that decide whether it looks and feels like a real company — I run hands-on, with an AI team doing the heavy lifting.</p>
+      </div>
+      <ul class="span-7 fn reveal">
+        {functions.map(([t, d]) => <li><strong>{t}</strong><span>{d}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section id="notes" class="section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">Notes</p>
+          <h2 class="h-section">What I actually did this week, with AI, in a real brand.</h2>
+        </div>
+        <a href="/notes" class="link">All notes →</a>
+      </div>
+      <div class="grid-3 notes reveal">
+        {notes.map(n => (
+          <article class="note">
+            <a href={`/notes/${n.id}`} class="ph ph--landscape" aria-hidden="true" tabindex="-1"></a>
+            <p class="eyebrow eyebrow--support">{n.data.kind === 'case-study' ? 'Case study' : 'Note'}{n.data.tag ? ` · ${n.data.tag}` : ''}</p>
+            <h3 class="h-card"><a href={`/notes/${n.id}`} class="note__t">{n.data.title}</a></h3>
+            <p class="card__p">{n.data.description}</p>
+          </article>
+        ))}
+        {upcoming.map(u => (
+          <article class="note note--soon">
+            <div class="ph ph--landscape" aria-hidden="true"><span>Coming soon</span></div>
+            <p class="eyebrow eyebrow--support">Case study · {u.tag} · coming</p>
+            <h3 class="h-card">{u.title}</h3>
+            <p class="card__p">{u.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDING -->
+  <section id="building" class="wrap">
+    <div class="build grid-12 reveal">
+      <div class="span-7 stack">
+        <p class="eyebrow">Building</p>
+        <h2 class="h-section">From founder to builder: learning Python, shipping small tools, in public.</h2>
+        <p class="build__p">Harvard’s CS50P, then agents that do one real job in the business end to end. Every repo has a README a founder can read. It will look unfinished — that’s the point.</p>
+        <a href="https://github.com/gaolujessie" class="link build__link" target="_blank" rel="me noopener">See GitHub →</a>
+      </div>
+      <ul class="span-5 repos">
+        <li><span>shopify-stock-report</span><span>Python · in progress</span></li>
+        <li><span>caption-pipeline</span><span>Claude skill · planned</span></li>
+        <li><span>cs50p</span><span>Problem sets · weekly</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WORK WITH ME + SUBSCRIBE -->
+  <section id="subscribe" class="wrap section">
+    <div class="grid-2 reveal">
+      <div class="panel panel--white">
+        <h2 class="h-section">Work with me</h2>
+        <p class="panel__p">From early 2027 I’m taking on a small number of consumer-brand founders for 1:1 advisory — building your AI team function by function, and sharing what I know about starting and growing a brand. It starts with a 90-minute Brand AI Audit.</p>
+        <a href="/work-with-me" class="btn btn--ink">How it works</a>
+      </div>
+      <div class="panel panel--hero">
+        <h2 class="h-section">The weekly notes</h2>
+        <p class="panel__p">One email a week: the job, the old way, the AI way, what it cost, what broke, what you can copy. No fluff, no prompt packs.</p>
+        <form class="sub" action="#" method="post" data-newsletter>
+          <label for="email" class="sr">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@yourbrand.com" required autocomplete="email" />
+          <button type="submit" class="btn btn--ink">Subscribe</button>
+        </form>
+        <p class="sub__note">No spam. Unsubscribe any time.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: clamp(56px, 7vw, 96px) clamp(48px, 5vw, 72px); }
+  .hero__copy { gap: 26px; }
+  .hero__ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero__img { display: flex; justify-content: flex-end; }
+  .hero__img .ph { width: 100%; max-width: 440px; }
+  .cred { padding-top: 22px; border-top: 1px solid var(--rule); font-size: 15px; line-height: 1.6; color: var(--body); max-width: 640px; }
+  .cred strong { color: var(--ink); }
+  .proof { padding-bottom: clamp(56px, 7vw, 88px); }
+  .card__p { font-size: 15px; line-height: 1.55; color: var(--body); }
+  .about { align-items: start; }
+  .about__p { font-size: 17px; line-height: 1.6; color: var(--support-light); max-width: 460px; }
+  .fn { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 32px; }
+  .fn li { padding: 20px 0; border-bottom: 1px solid #4A4A4A; display: flex; flex-direction: column; gap: 2px; }
+  .fn strong { font-weight: 700; font-size: 16px; }
+  .fn span { font-size: 14px; color: #A9A9A4; }
+  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 40px; }
+  .sec-head .eyebrow { margin-bottom: 12px; }
+  .notes { gap: 32px; }
+  .note { display: flex; flex-direction: column; gap: 14px; }
+  .note__t { color: var(--ink); }
+  .note--soon { opacity: .78; }
+  .note__t:hover { color: var(--hero); }
+  .build { padding: clamp(28px, 4vw, 56px); background: var(--support); color: var(--ground); border-radius: 8px; margin-bottom: clamp(56px, 7vw, 88px); }
+  .build .eyebrow { color: var(--support-light); }
+  .build__p { font-size: 17px; line-height: 1.6; color: #D9D5CE; max-width: 560px; }
+  .build__link { color: var(--ground); }
+  .repos { display: flex; flex-direction: column; gap: 10px; }
+  .repos li { display: flex; justify-content: space-between; gap: 16px; padding: 16px 20px; background: var(--white); color: var(--ink); border-radius: 6px; font-size: 15px; }
+  .repos li span:first-child { font-weight: 700; }
+  .repos li span:last-child { color: var(--muted); }
+  .panel { padding: clamp(28px, 4vw, 48px); border-radius: 8px; display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+  .panel--white { background: var(--white); }
+  .panel--hero { background: var(--hero); color: var(--white); }
+  .panel__p { font-size: 16px; line-height: 1.6; color: var(--body); }
+  .panel--hero .panel__p { color: #FBD9CC; }
+  .sub { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; margin-top: 6px; }
+  .sub input { flex: 1 1 220px; min-height: 50px; padding: 0 16px; border: 1px solid #E07A5B; border-radius: 999px; background: var(--white); color: var(--ink); font-size: 15px; }
+  .sub input:focus { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .sub__note { font-size: 12px; color: #FBD9CC; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 900px) {
+    .hero__img { order: -1; justify-content: flex-start; }
+    .hero__img .ph { max-width: 100%; }
+    .fn { grid-template-columns: 1fr; }
+    .notes .ph { aspect-ratio: 16 / 10; }
+  }
+</style>

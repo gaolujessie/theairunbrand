@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({ data }) => !data.draft);
+  return notes.map(n => ({ params: { id: n.id }, props: { n } }));
+}
+const { n } = Astro.props;
+const { Content } = await render(n);
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title={n.data.title} description={n.data.description} ogType="article">
+  <article class="post">
+    <header class="wrap post__head">
+      <p class="eyebrow eyebrow--support">{n.data.kind === 'case-study' ? 'Case study' : 'Note'}{n.data.tag ? ` · ${n.data.tag}` : ''} · <time datetime={n.data.date.toISOString()}>{fmt(n.data.date)}</time></p>
+      <h1 class="h-display post__h">{n.data.title}</h1>
+      <p class="lede">{n.data.description}</p>
+    </header>
+    <div class="wrap">
+      <div class="prose"><Content /></div>
+      <aside class="after">
+        <p>Written by <strong>Jessie Gao</strong>, founder of a global consumer brand run with an AI team. One note like this a week — <a href="/#subscribe">get them by email</a>.</p>
+        <a href="/notes" class="link">← All notes</a>
+      </aside>
+    </div>
+  </article>
+</Base>
+<style>
+  .post__head { padding-block: clamp(56px, 7vw, 96px) clamp(32px, 4vw, 48px); display: flex; flex-direction: column; gap: 20px; max-width: 880px; }
+  .post__h { font-size: clamp(36px, 4.6vw, 60px); }
+  .after { margin: 64px 0 112px; max-width: 720px; padding: 24px 28px; background: var(--white); border-radius: 8px; display: flex; flex-direction: column; gap: 12px; color: var(--body); }
+</style>

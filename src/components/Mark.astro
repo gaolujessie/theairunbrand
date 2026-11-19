@@ -1,0 +1,14 @@
+---
+// The dandelion spark — eight fine rays ending in dots, plus a centre dot.
+interface Props { size?: string; color?: string; heavy?: boolean; class?: string; label?: string }
+const { size = '0.34em', color = 'currentColor', heavy = false, class: cls = '', label } = Astro.props;
+const sw = heavy ? 1.9 : 1.25; const r = heavy ? 1.8 : 1.35; const c = heavy ? 2.1 : 1.6;
+---
+<svg class={cls} viewBox="0 0 24 24" width={size} height={size} role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : 'true'}>
+  <g stroke={color} fill={color} stroke-width={sw} stroke-linecap="round">
+    {[0,45,90,135,180,225,270,315].map((a) => (
+      <g transform={`rotate(${a} 12 12)`}><path d="M12 8.6V3.6"></path><circle cx="12" cy="2.6" r={r}></circle></g>
+    ))}
+  </g>
+  <circle cx="12" cy="12" r={c} fill={color}></circle>
+</svg>
