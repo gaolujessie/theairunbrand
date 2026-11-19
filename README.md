@@ -35,7 +35,7 @@ Ground #F5F4F1 · Ink #141414 · Hero (Tomato) #D4502A · Support #3A3A3A · Sup
 Display: DM Serif Display · Body/UI: Manrope · Mark: dandelion spark on the i of Jessie
 
 ## Deploy (one-time setup)
-1. Create a GitHub repo `gaolujessie/jessiegao.com` (public) and push this folder to `main`.
+1. Create a GitHub repo `gaolujessie/theairunbrand` (public) and push this folder to `main`.
 2. Repo → Settings → Pages → Source: **GitHub Actions**. The workflow in `.github/workflows/deploy.yml` does the rest.
 3. Repo → Settings → Pages → Custom domain: `jessiegao.com` (the `public/CNAME` file keeps it set). Tick "Enforce HTTPS" once the certificate is issued.
 4. Cloudflare DNS for jessiegao.com (proxy status: DNS only / grey cloud while the GitHub certificate is issued; you can switch to proxied afterwards):
