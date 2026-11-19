@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 export default defineConfig({
-  site: 'https://jessiegao.com',
+  site: 'https://agentsofone.com',
   trailingSlash: 'never',
   build: { format: 'file' },
 });

@@ -1,0 +1,15 @@
+---
+// Agents of One lockup: the A·1 tile and the name, set simply in the display serif.
+interface Props { size?: string; href?: string; tile?: boolean }
+const { size = '26px', href = '/', tile = true } = Astro.props;
+---
+<a class="brand" href={href} aria-label="Agents of One — home" style={`font-size:${size}`}>
+  {tile && <img class="brand__tile" src="/favicon.svg" alt="" width="36" height="36" />}
+  <span class="brand__name">Agents of One</span>
+</a>
+<style>
+  .brand { display: inline-flex; align-items: center; gap: .5em; color: var(--ink); line-height: 1; white-space: nowrap; }
+  .brand:hover { color: var(--ink); }
+  .brand__tile { width: 1.35em; height: 1.35em; border-radius: .3em; box-shadow: 0 0 0 1px var(--rule); }
+  .brand__name { font-family: var(--serif); letter-spacing: .1px; }
+</style>

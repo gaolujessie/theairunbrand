@@ -1,10 +1,11 @@
 ---
+import Byline from './Byline.astro';
 const year = new Date().getFullYear();
 const links = [
   { k: 'linkedin', l: 'LinkedIn', h: 'https://www.linkedin.com/in/jessiegao/' },
   { k: 'instagram', l: 'Instagram', h: 'https://www.instagram.com/gaolujessie' },
   { k: 'github', l: 'GitHub', h: 'https://github.com/gaolujessie' },
-  { k: 'mail', l: 'Email', h: 'mailto:hello@jessiegao.com' },
+  { k: 'mail', l: 'Email', h: 'mailto:hello@agentsofone.com' },
 ];
 const icon: Record<string, string> = {
   linkedin: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V17M8 7.2v.1M12 17v-3.6a2.4 2.4 0 0 1 4.8 0V17M12 10.5V17"/>',
@@ -15,7 +16,7 @@ const icon: Record<string, string> = {
 ---
 <footer class="foot">
   <div class="wrap foot__in">
-    <span class="foot__copy">© {year} Jessie Gao · London</span>
+    <span class="foot__copy">© {year} Agents of One · <Byline size="17px" /> · London</span>
     <nav aria-label="Social" class="foot__links">
       {links.map(x => (
         <a href={x.h} class="pill" rel={x.h.startsWith('http') ? 'me noopener' : undefined} target={x.h.startsWith('http') ? '_blank' : undefined}>
@@ -31,6 +32,7 @@ const icon: Record<string, string> = {
 </footer>
 <style>
   .foot { margin-top: auto; border-top: 1px solid var(--rule); }
+  .foot__copy { display: inline-flex; align-items: center; gap: .5em; flex-wrap: wrap; }
   .foot__in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-block: 32px; font-size: 14px; color: var(--muted); }
   .foot__links { display: flex; flex-wrap: wrap; gap: 10px; }
   .pill { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink); font-size: 14px; font-weight: 700; transition: color .18s, border-color .18s; }

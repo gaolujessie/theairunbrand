@@ -3,9 +3,9 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 interface Props { title: string; description?: string; ogType?: string }
-const { title, description = 'Jessie Gao — founder of a global consumer brand, run with an AI team instead of a payroll. Notes, case studies and advisory for consumer-brand founders.', ogType = 'website' } = Astro.props;
+const { title, description = 'Agents of One, by Jessie Gao — how one founder runs a global consumer brand with an AI team instead of a payroll. Weekly notes, case studies and advisory for consumer-brand founders.', ogType = 'website' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const fullTitle = title === 'Jessie Gao' ? title : `${title} — Jessie Gao`;
+const fullTitle = title === 'home' ? 'Agents of One — by Jessie Gao' : `${title} — Agents of One`;
 ---
 <!doctype html>
 <html lang="en">
@@ -24,16 +24,19 @@ const fullTitle = title === 'Jessie Gao' ? title : `${title} — Jessie Gao`;
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
-  <meta property="og:site_name" content="Jessie Gao" />
+  <meta property="og:site_name" content="Agents of One" />
   <meta property="og:image" content={new URL('/og.png', Astro.site)} />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="alternate" type="application/rss+xml" title="Jessie Gao — Notes" href="/rss.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Agents of One — weekly notes" href="/rss.xml" />
   <script type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org', '@type': 'Person', name: 'Jessie Gao', url: 'https://jessiegao.com',
-    jobTitle: 'Founder', sameAs: ['https://www.linkedin.com/in/jessiegao/', 'https://www.instagram.com/gaolujessie', 'https://github.com/gaolujessie'],
+    '@context': 'https://schema.org', '@graph': [
+      { '@type': 'WebSite', '@id': 'https://agentsofone.com/#site', name: 'Agents of One', url: 'https://agentsofone.com', author: { '@id': 'https://agentsofone.com/#jessie' } },
+      { '@type': 'Person', '@id': 'https://agentsofone.com/#jessie', name: 'Jessie Gao', url: 'https://agentsofone.com/#about', jobTitle: 'Founder',
+        sameAs: ['https://www.linkedin.com/in/jessiegao/', 'https://www.instagram.com/gaolujessie', 'https://github.com/gaolujessie'] },
+    ],
   })} />
 </head>
 <body>

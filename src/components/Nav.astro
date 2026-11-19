@@ -1,5 +1,5 @@
 ---
-import Wordmark from './Wordmark.astro';
+import Brand from './Brand.astro';
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const items = [
   { href: '/#about', label: 'About' },
@@ -11,7 +11,7 @@ const active = (h: string) => h !== '/#about' && path.startsWith(h);
 ---
 <header class="nav">
   <div class="wrap nav__in">
-    <Wordmark />
+    <Brand />
     <nav aria-label="Primary" class="nav__links" id="nav-links">
       {items.map(i => <a href={i.href} class:list={[{ 'is-active': active(i.href) }]}>{i.label}</a>)}
       <a href="/work-with-me" class="btn btn--ink nav__cta">Work with me</a>

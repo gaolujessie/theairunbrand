@@ -1,0 +1,10 @@
+---
+import Wordmark from './Wordmark.astro';
+interface Props { size?: string; href?: string; prefix?: string }
+const { size = '22px', href = '/#about', prefix = 'by' } = Astro.props;
+---
+<span class="byline" style={`font-size:${size}`}><span class="byline__by">{prefix}</span> <Wordmark size="1em" href={href} /></span>
+<style>
+  .byline { display: inline-flex; align-items: baseline; gap: .4em; line-height: 1; }
+  .byline__by { font-family: var(--serif); font-style: italic; color: var(--muted); font-size: .8em; }
+</style>

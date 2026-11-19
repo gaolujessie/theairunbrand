@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Byline from '../components/Byline.astro';
 import { getCollection } from 'astro:content';
 const notes = (await getCollection('notes', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -18,12 +19,12 @@ const functions = [
   ['Website & data', 'Shopify, stock buffers, sales by market, forecasting'],
 ];
 ---
-<Base title="Jessie Gao">
+<Base title="home">
   <!-- HERO -->
   <section class="hero">
     <div class="wrap grid-12">
       <div class="span-7 stack hero__copy">
-        <p class="eyebrow">Founder · London</p>
+        <div class="hero__eyebrow"><Byline size="24px" /><span class="hero__sep">·</span><span class="eyebrow">Founder · London</span></div>
         <h1 class="h-display">One founder.<br>A global brand.<br><em class="accent">An AI team</em> instead of a payroll.</h1>
         <p class="lede">I’m Jessie Gao. I built a children’s clothing brand from a sketchbook to department stores and customers worldwide — and I still run its design, marketing, production and website myself, with Claude in nearly every function. Here I show exactly how, and help other founders build the same way.</p>
         <div class="hero__ctas">
@@ -81,7 +82,7 @@ const functions = [
     <div class="wrap">
       <div class="sec-head reveal">
         <div>
-          <p class="eyebrow">Notes</p>
+          <p class="eyebrow">Agents of One · weekly notes</p>
           <h2 class="h-section">What I actually did this week, with AI, in a real brand.</h2>
         </div>
         <a href="/notes" class="link">All notes →</a>
@@ -133,7 +134,7 @@ const functions = [
         <a href="/work-with-me" class="btn btn--ink">How it works</a>
       </div>
       <div class="panel panel--hero">
-        <h2 class="h-section">The weekly notes</h2>
+        <h2 class="h-section">Agents of One, weekly</h2>
         <p class="panel__p">One email a week: the job, the old way, the AI way, what it cost, what broke, what you can copy. No fluff, no prompt packs.</p>
         <form class="sub" action="#" method="post" data-newsletter>
           <label for="email" class="sr">Email address</label>
@@ -165,6 +166,9 @@ const functions = [
   .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 40px; }
   .sec-head .eyebrow { margin-bottom: 12px; }
   .notes { gap: 32px; }
+  .hero__eyebrow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .hero__eyebrow .eyebrow { margin: 0; }
+  .hero__sep { color: var(--support-light); }
   .note { display: flex; flex-direction: column; gap: 14px; }
   .note__t { color: var(--ink); }
   .note--soon { opacity: .78; }
